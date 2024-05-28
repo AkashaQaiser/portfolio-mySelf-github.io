@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="assets/min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/bf91090ba0.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap" rel="stylesheet">
+</head>
+<body>
+    <section class="navbar">
+        <div class="container">
+            <div class="navigation">
+                <div class="name">
+                    <h3>Akasha Qaiser</h3>
+                </div>
+                <div class="nav" id="navigation">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                    </ul>
+                    <i onclick="toggleMenu('none')" id="close-ico" class="fa fa-times-circle close-ico"></i>
+                </div>
+                <div class="menu-icons">
+                    <i onclick="toggleMenu('block')" class="fa fa-bars menu-ico"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="project">
+        <div class="container">
+            <div class="project_wrapper">
+                <div class="project_text">
+                    <span id="project-title"></span>
+                </div>
+                <div class="projects">
+                    <div class="project-card online-course-card" onclick="makeProminent(this)">
+                        <a href="https://hungryforjobs.com/">
+                            <div class="image-wrapper">
+                                <img src="assets/images/hfg 2.jpg" alt="">
+                            </div>
+                            <p class="project-name">Laravel Site</p>
+                            <button class="Check-Out-button">Hungry For Jobs</button>
+                        </a>
+                    </div>
+                    <div class="project-card online-course-card" onclick="makeProminent(this)">
+                        <a href="https://www.e-food.gr/" class="e-food">
+                            <div class="image-wrapper">
+                                <img src="assets/images/e food 1.png" alt="">
+                            </div>
+                            <p class="project-name">Laravel Site</p>
+                            <button class="Check-Out-button">E food</button>
+                        </a>
+                    </div>
+                    <div class="project-card online-course-card" onclick="makeProminent(this)">
+                        <a href="https://www.everythingkuwait.com/">
+                            <div class="image-wrapper">
+                                <img src="assets/images/Ek 3.png" alt="">
+                            </div>
+                            <p class="project-name">Codiegniter Site</p>
+                            <button class="Check-Out-button">Every Thing For Kuwait</button>
+                        </a>
+                    </div>
+                    <div class="project-card online-course-card" onclick="makeProminent(this)">
+                        <a href="https://phenompreps.com/">
+                            <div class="image-wrapper">
+                                <img src="assets/images/pheom-1.jpg" alt="">
+                            </div>
+                            <p class="project-name">Shopify Site</p>
+                            <button class="Check-Out-button">Phenom Preps</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+    <script>
+        var typed = new Typed('#project-title', {
+          strings: ['Here are some of my recent <span class="yellow-text">Projects</span> that I have worked on.'],
+          typeSpeed: 50,
+        });
+
+        function makeProminent(card) {
+          const cards = document.getElementsByClassName('project-card');
+          for (let i = 0; i < cards.length; i++) {
+            cards[i].classList.remove('prominent');
+          }
+          card.classList.add('prominent');
+        }
+
+        var navigation = document.getElementById('navigation');
+
+        function toggleMenu(displayValue) {
+            if (displayValue === 'block') {
+                navigation.style.display = 'block';
+                navigation.offsetWidth;
+                navigation.classList.add('show-nav');
+                document.addEventListener('click', closeMenuOnClickOutside);
+            } else {
+                navigation.classList.remove('show-nav');
+                navigation.addEventListener('transitionend', function() {
+                    navigation.style.display = 'none';
+                    navigation.removeEventListener('transitionend', arguments.callee);
+                });
+                document.removeEventListener('click', closeMenuOnClickOutside);
+            }
+        }
+
+        function closeMenuOnClickOutside(event) {
+            var menuIcon = document.querySelector('.menu-ico');
+            var closeIcon = document.querySelector('.close-ico');
+            if (event.target !== menuIcon && event.target !== closeIcon && !navigation.contains(event.target)) {
+                toggleMenu('none');
+            }
+        }
+    </script>
+</body>
+</html>
